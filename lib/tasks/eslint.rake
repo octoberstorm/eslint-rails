@@ -10,7 +10,15 @@ namespace :eslint do
       puts 'All good! :)'.green
       exit 0
     else
-      formatter = ESLintRails::TextFormatter.new(warnings)
+      format = ENV['format']
+      output_file = ENV['output_file']
+
+      if format == 'checkstyle'
+        formatter = ESLintRails::CheckstyleFormatter.new(warnings, output_file)
+      else
+        formatter = ESLintRails::TextFormatter.new(warnings)
+      end
+
       formatter.format
       exit 1
     end

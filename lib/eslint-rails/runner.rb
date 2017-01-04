@@ -98,3 +98,4 @@ module ESLintRails
     end
   end
 end
+
